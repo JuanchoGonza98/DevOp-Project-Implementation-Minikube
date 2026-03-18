@@ -53,4 +53,45 @@ Client / Browser
        +--> orders-service
        +--> payments-service
        +--> users-service
+```
+## Running on Kubernetes with Minikube
 
+### Start Minikube
+
+```bash
+minikube start
+Deploy the application
+kubectl apply -f k8s/ecommerce-all.yaml
+Verify resources
+kubectl get all -n ecommerce
+Access the application
+kubectl port-forward -n ecommerce svc/nginx-gateway 8080:80
+```
+##Then open:
+```bash
+http://localhost:8080
+```
+
+##Testing the APIs
+##est through the gateway
+```bash
+curl -i http://localhost:8080/products/
+```
+```bash
+curl -i http://localhost:8080/orders/
+```
+```bash
+curl -i http://localhost:8080/users/
+```
+```bash
+curl -i http://localhost:8080/payments/
+```
+
+##Port-forward directly to a microservice for manual testing
+```bash
+kubectl port-forward -n ecommerce svc/products-service 8081:8081
+```
+##########Example direct test to products-service#################
+```bash
+curl -i http://localhost:8081/products/
+```
