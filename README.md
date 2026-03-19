@@ -60,11 +60,17 @@ Client / Browser
 
 ```bash
 minikube start
+```
 Deploy the application
+```bash
 kubectl apply -f k8s/ecommerce-all.yaml
+```
 Verify resources
+```bash
 kubectl get all -n ecommerce
+```
 Access the application
+```bash
 kubectl port-forward -n ecommerce svc/nginx-gateway 8080:80
 ```
 ##Then open:
